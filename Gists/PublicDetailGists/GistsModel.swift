@@ -83,12 +83,14 @@ class GistsModel: APIClient {
             if oldTopUsers.count != self.topUsers.count {
                 isTopUsersChanged = true
             }
-            for i in 0..<self.topUsers.count {
-                let newUser = self.topUsers[i]
-                let oldUser = oldTopUsers[i]
-                if newUser.url != oldUser.url {
-                    isTopUsersChanged = true
-                    break
+            if !isTopUsersChanged {
+                for i in 0..<self.topUsers.count {
+                    let newUser = self.topUsers[i]
+                    let oldUser = oldTopUsers[i]
+                    if newUser.url != oldUser.url {
+                        isTopUsersChanged = true
+                        break
+                    }
                 }
             }
             if isTopUsersChanged {
